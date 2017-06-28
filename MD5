@@ -1,11 +1,11 @@
-5dabca195d567ef056b0754f93687fc6 *DESCRIPTION
+e2e18948f690c8e346b0f46c90d7821b *DESCRIPTION
 a4165c52cfd099cab15565455fdcdf6a *NAMESPACE
 0f4f2a37c6bf29502f27bbc1a6e4cc40 *R/assert_colnames.R
 ef4d72e6a3a792fead737a1e4bf7f41a *R/assert_ids.R
 92b0fb00d55a9ed6813dfbd359ba9fe5 *R/assert_nrows.R
 0d1eb8ff69da33db397ea1cc12588c55 *R/assert_values.R
 a240fb732ddbf27f6d8b6e8d6c592e7c *R/check_files.R
-480fe6fa6cb99fd955362c6376b92730 *R/import_files.R
+a5d1bed5b6f4772824637f23a44fce19 *R/import_files.R
 e0b5af1aa8295e68d7ec04a32a58162a *README.md
 10f82053cf857c8cee64dcab133c6420 *build/vignette.rds
 59d7e5b02517f6a9382e9e80b3e6c7ff *inst/doc/assertion_template.R
