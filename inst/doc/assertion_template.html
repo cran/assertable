@@ -12,7 +12,7 @@
 
 <meta name="author" content="Grant Nguyen" />
 
-<meta name="date" content="2019-05-07" />
+<meta name="date" content="2019-09-11" />
 
 <title>assertable Template</title>
 
@@ -300,7 +300,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">assertable Template</h1>
 <h4 class="author"><em>Grant Nguyen</em></h4>
-<h4 class="date"><em>2019-05-07</em></h4>
+<h4 class="date"><em>2019-09-11</em></h4>
 
 
 
@@ -320,9 +320,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb2-2" title="2">filenames &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, filenames, <span class="dt">package =</span> <span class="st">&quot;assertable&quot;</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3"></a>
 <a class="sourceLine" id="cb2-4" title="4">filenames</a></code></pre></div>
-<pre><code>## [1] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpSqzTQ8/Rinst2fe856f75f58/assertable/extdata/file_1.csv&quot;
-## [2] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpSqzTQ8/Rinst2fe856f75f58/assertable/extdata/file_2.csv&quot;
-## [3] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpSqzTQ8/Rinst2fe856f75f58/assertable/extdata/file_3.csv&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpQfJ61p/Rinst57cc49402b73/assertable/extdata/file_1.csv&quot;
+## [2] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpQfJ61p/Rinst57cc49402b73/assertable/extdata/file_2.csv&quot;
+## [3] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpQfJ61p/Rinst57cc49402b73/assertable/extdata/file_3.csv&quot;</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">check_files</span>(filenames)</a></code></pre></div>
 <pre><code>## [1] &quot;All results are present&quot;</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">master_data &lt;-<span class="st"> </span><span class="kw">import_files</span>(filenames,<span class="dt">FUN=</span>fread)</a></code></pre></div>

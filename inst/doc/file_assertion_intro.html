@@ -12,7 +12,7 @@
 
 <meta name="author" content="Grant Nguyen" />
 
-<meta name="date" content="2019-05-07" />
+<meta name="date" content="2019-09-11" />
 
 <title>assertable File Assertion Intro</title>
 
@@ -300,7 +300,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">assertable File Assertion Intro</h1>
 <h4 class="author"><em>Grant Nguyen</em></h4>
-<h4 class="date"><em>2019-05-07</em></h4>
+<h4 class="date"><em>2019-09-11</em></h4>
 
 
 
@@ -320,32 +320,32 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">files &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;file_&quot;</span>,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>),<span class="st">&quot;.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb2-2" title="2">filenames &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, files, <span class="dt">package =</span> <span class="st">&quot;assertable&quot;</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3">filenames</a></code></pre></div>
-<pre><code>## [1] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpSqzTQ8/Rinst2fe856f75f58/assertable/extdata/file_1.csv&quot;
-## [2] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpSqzTQ8/Rinst2fe856f75f58/assertable/extdata/file_2.csv&quot;
-## [3] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpSqzTQ8/Rinst2fe856f75f58/assertable/extdata/file_3.csv&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpQfJ61p/Rinst57cc49402b73/assertable/extdata/file_1.csv&quot;
+## [2] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpQfJ61p/Rinst57cc49402b73/assertable/extdata/file_2.csv&quot;
+## [3] &quot;C:/Users/grantng/AppData/Local/Temp/RtmpQfJ61p/Rinst57cc49402b73/assertable/extdata/file_3.csv&quot;</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">check_files</span>(filenames)</a></code></pre></div>
 <pre><code>## [1] &quot;All results are present&quot;</code></pre>
 <p>Here, let’s add another file to filenames.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">filenames &lt;-<span class="st"> </span><span class="kw">c</span>(filenames,<span class="st">&quot;new_file.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="kw">check_files</span>(filenames)</a></code></pre></div>
-<pre><code>## [1] &quot;Have 3 files: expecting 4 at 2019-05-07 08:44:08&quot;
+<pre><code>## [1] &quot;Have 3 files: expecting 4 at 2019-09-11 14:12:42&quot;
 ## [1] &quot;Still Missing: new_file.csv&quot;</code></pre>
 <pre><code>## Error in check_files(filenames): Files not complete; stopping execution -- set continual=T for continual file checks</code></pre>
 <p>By setting continual = T, you can keep checking for the files every few seconds (specified by sleep_time) for a designated number of minutes (specified by sleep_end). This is particularly useful when monitoring the progress of distributed compute jobs, or pausing execution of a step until all previous steps have successfully produced otuput files.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">filenames &lt;-<span class="st"> </span><span class="kw">c</span>(filenames,<span class="st">&quot;new_file.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw">check_files</span>(filenames, <span class="dt">continual=</span>T, <span class="dt">sleep_time =</span> <span class="dv">1</span>, <span class="dt">sleep_end =</span> <span class="fl">.10</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;Have 3 files: expecting 5 at 2019-05-07 08:44:08&quot;
-## [1] &quot;Have 3 files: expecting 5 at 2019-05-07 08:44:09&quot;
-## [1] &quot;Have 3 files: expecting 5 at 2019-05-07 08:44:10&quot;
-## [1] &quot;Have 3 files: expecting 5 at 2019-05-07 08:44:11&quot;
-## [1] &quot;Have 3 files: expecting 5 at 2019-05-07 08:44:12&quot;
-## [1] &quot;Have 3 files: expecting 5 at 2019-05-07 08:44:13&quot;
-## [1] &quot;Have 3 files: expecting 5 at 2019-05-07 08:44:14&quot;</code></pre>
+<pre><code>## [1] &quot;Have 3 files: expecting 5 at 2019-09-11 14:12:42&quot;
+## [1] &quot;Have 3 files: expecting 5 at 2019-09-11 14:12:43&quot;
+## [1] &quot;Have 3 files: expecting 5 at 2019-09-11 14:12:44&quot;
+## [1] &quot;Have 3 files: expecting 5 at 2019-09-11 14:12:45&quot;
+## [1] &quot;Have 3 files: expecting 5 at 2019-09-11 14:12:46&quot;
+## [1] &quot;Have 3 files: expecting 5 at 2019-09-11 14:12:47&quot;
+## [1] &quot;Have 3 files: expecting 5 at 2019-09-11 14:12:48&quot;</code></pre>
 <pre><code>## Error in check_files(filenames, continual = T, sleep_time = 1, sleep_end = 0.1): Files not complete; stopping execution after 0.1 minutes</code></pre>
 <p>check_files only prints out missing files if 75% of the requested files exist. You can change this using the display_pct argument. This is useful to see what specific files/processes may have errored out, but without filling up your logs while they are computing.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">filenames &lt;-<span class="st"> </span><span class="kw">c</span>(filenames,<span class="st">&quot;new_file_1.csv&quot;</span>,<span class="st">&quot;new_file_2.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb12-2" title="2"><span class="kw">check_files</span>(filenames, <span class="dt">display_pct=</span><span class="dv">50</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;Have 3 files: expecting 7 at 2019-05-07 08:44:15&quot;</code></pre>
+<pre><code>## [1] &quot;Have 3 files: expecting 7 at 2019-09-11 14:12:49&quot;</code></pre>
 <pre><code>## Error in check_files(filenames, display_pct = 50): Files not complete; stopping execution -- set continual=T for continual file checks</code></pre>
 </div>
 <div id="importing-files" class="section level2">
@@ -389,7 +389,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>import_files first scans to make sure that all requested files exist prior to bringing them in. This can save a lot of time if you have numerous large files and currently only stop execution if your read.csv or other data import function breaks (potentially after importing many other files beforehand).</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">filenames &lt;-<span class="st"> </span><span class="kw">c</span>(filenames,<span class="kw">paste0</span>(<span class="st">&quot;new_file_&quot;</span>,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>),<span class="st">&quot;.csv&quot;</span>))</a>
 <a class="sourceLine" id="cb23-2" title="2"><span class="kw">import_files</span>(filenames)</a></code></pre></div>
-<pre><code>## [1] &quot;Have 3 files: expecting 13 at 2019-05-07 08:44:15&quot;</code></pre>
+<pre><code>## [1] &quot;Have 3 files: expecting 13 at 2019-09-11 14:12:50&quot;</code></pre>
 <pre><code>## Error in import_files(filenames): These files do not exist: new_file_1.csv new_file_2.csv new_file_3.csv new_file_4.csv new_file_5.csv new_file_6.csv new_file_7.csv new_file_8.csv new_file_9.csv new_file_10.csv</code></pre>
 </div>
 
