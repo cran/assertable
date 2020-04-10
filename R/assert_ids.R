@@ -8,16 +8,16 @@
 #' and \emph{duplicate_id}: a unique ID for each duplicate value within each combination of id_vars. \cr
 #'
 #' Note: if assert_combos = T and is violated, then assert_ids will stop execution and return results for assert_combos
-#'        before evaluating the assert_dups segment of the code. 
+#'        before evaluating the assert_dups segment of the code.
 #'        If you want to make sure both options are evaluated even in case of a violation in assert_combos,
-#'        call assert_ids twice (once with assert_dups = F, then assert_combos = F) with warn_only = T, 
-#'        and then conditionally stop your code if either call returns results. 
+#'        call assert_ids twice (once with assert_dups = F, then assert_combos = F) with warn_only = T,
+#'        and then conditionally stop your code if either call returns results.
 
 #' @param data A data.frame or data.table
 #' @param id_vars A named list of vectors, where the name of each vector must correspond to a column in \emph{data}
 #' @param assert_combos Assert that the data object must contain all combinations of \emph{id_vars}. Default = T.
 #' @param assert_dups Assert that the data object must not contain duplicate values within any combinations of \emph{id_vars}. Default = T.
-#' @param ids_only By default, with assert_dups = T, the function returns the unique combinations of id_vars that have duplicate observations. 
+#' @param ids_only By default, with assert_dups = T, the function returns the unique combinations of id_vars that have duplicate observations.
 #'                  If ids_only = F, will return every observation in the original dataset that are duplicates.
 #' @param warn_only Do you want to warn, rather than error? Will return all offending rows from the first violation of the assertion. Default=F.
 #' @param quiet Do you want to suppress the printed message when a test is passed? Default = F.
@@ -35,12 +35,12 @@
 
 assert_ids <- function(data, id_vars, assert_combos=TRUE, assert_dups=TRUE, ids_only = TRUE, warn_only=FALSE, quiet=FALSE) {
   id_varnames <- names(id_vars)
-  
+
   for(varname in id_varnames) {
     if(!varname %in% colnames(data)) stop(paste("The following id_var must exist as a column name in your dataset:",varname))
     ## Coerce factors to characters to avoid any merge or display issues
     if(is.factor(id_vars[[varname]])) id_vars[[varname]] <- as.character(id_vars[[varname]])
-    
+
     ## Stop if trying to use assert_ids on a factor that contains underlying numeric values
     ## Too difficult to match them (data.table matches numerics to the underlying numeric value, not the label)
     ## And don't want to coerce the character types back-and-forth
@@ -69,20 +69,22 @@ assert_ids <- function(data, id_vars, assert_combos=TRUE, assert_dups=TRUE, ids_
     if(length(id_varnames) == 1) {
       if(colnames(data_ids) == "V1") setnames(data_ids, "V1", id_varnames)
     }
-  }  
-  
+  }
+
   ## Create unique combinations of all id variables based on input id_vars
   target_ids <- data.table(do.call(CJ, id_vars))
   if(assert_combos==TRUE){
     target_ids$in_target <- 1
     data_ids$in_data <- 1
-    
+
     merged_ids <- merge(data_ids, target_ids, by=id_varnames, all=TRUE)
-    
+
     if(nrow(merged_ids[merged_ids$in_data==1]) != nrow(merged_ids)) {
       if(warn_only == FALSE) {
-        print(merged_ids[is.na(merged_ids$in_data), .SD, .SDcols=id_varnames])
-        stop("The above combinations of id variables do not exist in your dataset")
+        stop(paste0(
+          "\n", paste0(capture.output(merged_ids[is.na(merged_ids$in_data), .SD, .SDcols=id_varnames]), collapse="\n"),
+          "\nThe above combinations of id variables do not exist in your dataset")
+        )
       } else {
         warning("The following combinations of id variables do not exist in your dataset")
         return(merged_ids[is.na(merged_ids$in_data), .SD, .SDcols=id_varnames])
@@ -90,8 +92,10 @@ assert_ids <- function(data, id_vars, assert_combos=TRUE, assert_dups=TRUE, ids_
     }
     if(nrow(merged_ids[merged_ids$in_target==1]) != nrow(merged_ids)) {
       if(warn_only == FALSE) {
-        print(merged_ids[is.na(merged_ids$in_target), .SD, .SDcols=id_varnames])
-        stop("The above combinations of id variables exist in your dataset but not in your id_vars list")
+        stop(paste0(
+          "\n", paste0(capture.output(merged_ids[is.na(merged_ids$in_target), .SD, .SDcols=id_varnames]), collapse="\n"),
+          "\nThe above combinations of id variables exist in your dataset but not in your id_vars list")
+        )
       } else {
         warning("The following combinations of id variables exist in your dataset but not in your id_vars list")
         return(merged_ids[is.na(merged_ids$in_target), .SD, .SDcols=id_varnames])
@@ -126,8 +130,10 @@ assert_ids <- function(data, id_vars, assert_combos=TRUE, assert_dups=TRUE, ids_
     }
 
     if(warn_only == FALSE) {
-      print(duplicate_ids)
-      stop(err_message)
+      stop(
+        paste0(
+          "\n", paste0(capture.output(duplicate_ids), collapse="\n"),
+          "\n", err_message))
     } else {
       warning(err_message)
       return(duplicate_ids)
