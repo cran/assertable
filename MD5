@@ -1,7 +1,7 @@
-7f5e5b33c8fe7116cd687f50e8b0f5ef *DESCRIPTION
+84e6e6f52c3bbca633bc660d7f2075af *DESCRIPTION
 5d642275f22144a3293f684aa2a4fd01 *NAMESPACE
 caa626af8dd436e20868188ca5a22e9f *R/assert_colnames.R
-598535949d7f4928bc4c88f3a9bbff3b *R/assert_coltypes.R
+5746aa685ab85a34b622534ccf8a2c7f *R/assert_coltypes.R
 53c30c550b78834a13102264ef7c2988 *R/assert_ids.R
 6347efd046fde443d1d34d03b75d5abf *R/assert_nrows.R
 8e3c4f34dee044bfc9ce53a03da40a84 *R/assert_values.R
@@ -11,13 +11,13 @@ caa626af8dd436e20868188ca5a22e9f *R/assert_colnames.R
 e9af71a785cacbf2552d766fc72f4c7a *build/vignette.rds
 2380acb3cef074e6d9a3f97f9b032022 *inst/doc/assertion_template.R
 5d578e344b3fa4e701b42514da9da3a7 *inst/doc/assertion_template.Rmd
-42d3aeda987760df7e402ff093e32496 *inst/doc/assertion_template.html
+468e09633697a3e4cd3c987f17f8545c *inst/doc/assertion_template.html
 e4423f0f7d811593446037999d436a13 *inst/doc/data_assertion_intro.R
 545e9bd7c8e903088648e7048de1a258 *inst/doc/data_assertion_intro.Rmd
-fbdb9493dae6d01a120d3ce96c6a44ac *inst/doc/data_assertion_intro.html
+fc6ec436cf74bbe235ba42e8fcd884d4 *inst/doc/data_assertion_intro.html
 3011daf622859ca12055399b8db2defb *inst/doc/file_assertion_intro.R
 2034a285d2f6540e536fab74306f90e8 *inst/doc/file_assertion_intro.Rmd
-20caa10da90abe0af5b59663040b2a8c *inst/doc/file_assertion_intro.html
+7163375e4ad72f7162b3c985e5054e97 *inst/doc/file_assertion_intro.html
 9204d9d7f6844eb8ef7ff56668f73c9c *inst/extdata/file_1.csv
 33d2a5f8205519acf5eff0e0a1226e27 *inst/extdata/file_2.csv
 7abe46a9bf73ec6f7b830d0b1fed3e3d *inst/extdata/file_3.csv
